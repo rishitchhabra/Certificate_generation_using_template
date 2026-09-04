@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data.db
+uploads/templates/*
+!uploads/templates/.gitkeep
+.env

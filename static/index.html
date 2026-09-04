@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="theme-color" content="#0f0f1e" />
+  <title>Download Your Certificate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <path d="M8 13h8M8 17h8M8 9h2"></path>
+        </svg>
+      </div>
+      <h1>Certificate Download</h1>
+      <p>Find your certificate and save it as an image</p>
+    </div>
+
+    <ol class="steps" id="steps">
+      <li class="step-pill active" data-step="1"><span class="dot">1</span>School</li>
+      <li class="sep">›</li>
+      <li class="step-pill" data-step="2"><span class="dot">2</span>Name</li>
+      <li class="sep">›</li>
+      <li class="step-pill" data-step="3"><span class="dot">3</span>Certificate</li>
+    </ol>
+
+    <div id="message" class="message"></div>
+
+    <!-- Step 1: Select school -->
+    <div class="card step active" id="step-school">
+      <h2>Select Your School</h2>
+      <p class="subtitle">Choose your school from the list below</p>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input id="school-search" type="search" placeholder="Search school..." />
+      </div>
+      <ul id="school-list" class="list"></ul>
+      <div id="school-empty" class="empty" style="display:none">No schools found.</div>
+    </div>
+
+    <!-- Step 2a: Select certificate (only if multiple) -->
+    <div class="card step" id="step-cert">
+      <button class="back-link" onclick="goBack()">‹ Back</button>
+      <h2>Select Certificate</h2>
+      <p class="subtitle">This school has more than one certificate</p>
+      <ul id="cert-list" class="list"></ul>
+    </div>
+
+    <!-- Step 2b: Find name -->
+    <div class="card step" id="step-name">
+      <button class="back-link" onclick="goBack()">‹ Back</button>
+      <h2>Find Your Name</h2>
+      <p class="subtitle">Search and select your name</p>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input id="name-search" type="search" placeholder="Search your name..." />
+      </div>
+      <ul id="name-list" class="list"></ul>
+      <div id="name-empty" class="empty" style="display:none">No names found.</div>
+    </div>
+
+    <!-- Step 3: Certificate -->
+    <div class="card step" id="step-certificate">
+      <button class="back-link" onclick="goBack()">‹ Back</button>
+      <h2>Your Certificate</h2>
+      <p class="subtitle">Here is your certificate</p>
+      <div class="preview">
+        <div id="preview-loading" class="spinner">Generating your certificate…</div>
+        <img id="preview-img" alt="Certificate preview" style="display:none" />
+      </div>
+      <div style="margin-top:20px">
+        <button id="download-btn" class="btn" onclick="downloadCertificate()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download Certificate
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">Made with <span style="color:#ec4899">♥</span> by Rishit Singh Chhabra</div>
+  </div>
+
+  <script src="/static/js/public.js"></script>
+</body>
+</html>

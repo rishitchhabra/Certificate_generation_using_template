@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="theme-color" content="#0f0f1e" />
+  <title>Admin · Certificate Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+      </div>
+      <h1>Admin Panel</h1>
+      <p>Manage certificate sets</p>
+    </div>
+
+    <div id="msg" class="message"></div>
+
+    <!-- Login -->
+    <div class="card" id="login-card">
+      <h2>Admin Login</h2>
+      <p class="subtitle">Sign in to manage certificates</p>
+      <div class="field">
+        <label>Username</label>
+        <input id="login-user" class="input" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input id="login-pass" class="input" type="password" autocomplete="current-password" />
+      </div>
+      <button id="login-btn" class="btn" onclick="login()">Log In</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" style="display:none">
+      <div class="admin-nav">
+        <button class="btn" onclick="openForm()">+ Add Certificate Set</button>
+        <button class="btn btn-secondary btn-sm" onclick="logout()">Logout</button>
+      </div>
+
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>School</th>
+                <th>Certificate</th>
+                <th style="text-align:right">Students</th>
+                <th style="text-align:right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="sets-tbody"></tbody>
+          </table>
+        </div>
+        <div id="sets-empty" class="empty" style="display:none">No certificate sets yet. Click "Add Certificate Set".</div>
+      </div>
+    </div>
+
+    <!-- Add / Edit form -->
+    <div class="card" id="form-card" style="display:none">
+      <button class="back-link" onclick="closeForm()">‹ Back</button>
+      <h2 id="form-title">Add Certificate Set</h2>
+
+      <div class="field">
+        <label>School Name</label>
+        <input id="f-school" class="input" placeholder="e.g. ABC Public School" />
+      </div>
+
+      <div class="field">
+        <label>Certificate Name</label>
+        <input id="f-cert" class="input" placeholder="e.g. Annual Sports Day Certificate" />
+      </div>
+
+      <div class="field">
+        <label>Student Names Excel (.xlsx)</label>
+        <div class="file-drop">
+          <span id="excel-name">Tap to choose Excel file</span>
+          <input id="f-excel" type="file" accept=".xlsx,.xls" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Certificate Template (PDF or JPG/PNG)</label>
+        <div class="file-drop">
+          <span id="pdf-name">Tap to choose template</span>
+          <input id="f-pdf" type="file" accept="application/pdf,.pdf,.jpg,.jpeg,.png" />
+        </div>
+      </div>
+
+      <div id="position-section" style="display:none">
+        <hr class="divider" />
+        <div class="hint">Drag the <b>{{name}}</b> placeholder on the certificate to position the student's name.</div>
+        <div class="preview">
+          <div class="pdf-stage" id="pdf-stage" style="display:none">
+            <img id="pdf-preview" alt="Certificate template" />
+            <div class="pos-marker" id="pos-marker" style="display:none">{{name}}</div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:16px">
+          <label>Name Font Size</label>
+          <div class="range-row">
+            <input id="f-fontsize" type="range" min="10" max="160" value="36" />
+            <span class="value" id="f-fontsize-val">36</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Name Font</label>
+          <select id="f-font" class="input">
+            <option value="helv">Helvetica</option>
+            <option value="hebo">Helvetica Bold</option>
+            <option value="tiro">Times Roman</option>
+            <option value="tibo">Times Bold</option>
+            <option value="cour">Courier</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Name Color</label>
+          <div class="range-row">
+            <input id="f-color" type="color" value="#000000" />
+            <span class="value" id="f-color-val">#000000</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn" id="save-btn" onclick="saveSet()">Save Certificate Set</button>
+    </div>
+
+    <div class="footer">Admin Panel · Made with <span style="color:#ec4899">♥</span> by Rishit Singh Chhabra</div>
+  </div>
+
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>
